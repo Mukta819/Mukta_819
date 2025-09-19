@@ -1,0 +1,344 @@
+package arjunabill;
+
+import java.util.Date;
+                                //Account class
+public class Account {
+	
+	private int acct_no;
+	private double balance;
+	
+	//create default constructor
+	Account() {}
+
+	//create parameterized constructor
+	public Account(int acct_no, double balance) {
+		super();
+		this.acct_no = acct_no;
+		this.balance = balance;
+	}
+
+	//create getter and setter method
+	public int getAcct_no() {
+		return acct_no;
+	}
+
+	public void setAcct_no(int acct_no) {
+		this.acct_no = acct_no;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Account [AccountNo: +acc_no+",Balance is:" +balance+"]";
+	}	
+}
+
+
+
+
+
+package arjunabill;                     //Customer Class
+
+public class Customer {
+
+    private int id;
+    private String name;
+    private String phone;
+    private Account account;
+    
+    //create default constructor
+    Customer() {}
+
+    //create parameterized constructor
+	public Customer(int id, String name, String phone, Account account) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.account = account;
+	}
+	
+	//using getter and setter method
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	@Override
+	public String toString() {
+		return "[Customer details:Customer Id:"+id+"\tName: "+name+"\tPhone: "+phone+"\nAccount  details:]";
+	}	    
+}
+
+
+
+
+
+
+package arjunabill;
+                                           //Bill Class
+import java.util.Date;
+
+public class Bill {
+	
+	private int id;
+	private int custId;
+	private Date billGenerationDate;
+	private Date billPaymentDate;
+	private Double amount;
+	private boolean paid;
+	
+	//create default constructor
+	Bill(){}
+
+	//create parameterized constructor
+	public Bill(int id, int custId, Date billGenerationDate, Date billPaymentDate, double amount, boolean paid) {
+		super();
+		this.id = id;
+		this.custId = custId;
+		this.billGenerationDate = billGenerationDate;
+		this.billPaymentDate = billPaymentDate;
+		this.amount = amount;
+		this.paid = paid;
+	}
+
+	
+	//using setter and getter method
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCustId() {
+		return custId;
+	}
+
+	public void setCustId(int custId) {
+		this.custId = custId;
+	}
+
+	public Date getBillGenerationDate() {
+		return billGenerationDate;
+	}
+
+	public void setBillGenerationDate(Date billGenerationDate) {
+		this.billGenerationDate = billGenerationDate;
+	}
+
+	public Date getBillPaymentDate() {
+		return billPaymentDate;
+	}
+
+	public void setBillPaymentDate(Date billPaymentDate) {
+		this.billPaymentDate = billPaymentDate;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	@Override
+	public String toString() {
+		return "Bill  details: \nBill Id: "+id+"\tCustomer Id: "+custId+"\tBalance:"+amount+"\tGeneration Date: "+billGenerationDate+"\tPayment Date: "+billPaymentDate+"\tPaid: "+paid+"\n";
+	}	
+
+}
+
+
+
+
+package arjunabill;             //Transaction Class
+import arjunabill.Account;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Transaction {
+	
+	List<Customer> custList;
+	List<Bill> billList;
+	Bill Bill;
+	Customer customer;
+	
+	//create default constructor
+	Transaction() {}
+
+	//create parameterized constructor
+	public Transaction(List<Customer> custList, List<Bill> billList, Bill bill,
+			Customer customer) {
+		super();
+		this.custList = custList;
+		this.billList = billList;
+		this.Bill = bill;
+		this.customer = customer;
+	}
+
+	
+	//using getter and setter method
+	public List<Customer> getCustList() {
+		return custList;
+	}
+
+	public void setCustList(List<Customer> custList) {
+		this.custList = custList;
+	}
+
+	public List<Bill> getBillList() {
+		return billList;
+	}
+
+	public void setBillList(List<Bill> billList) {
+		this.billList = billList;
+	}
+
+	public Bill getBill() {
+		return Bill;
+	}
+
+	public void setBill(Bill bill) {
+		Bill = bill;
+	}
+
+	public void getCustomer(int id) {
+		Customer []cus = new Customer[2];
+		cus[0] = new Customer(1,"Tom","9090901010",null);
+		cus[1] = new Customer(2,"Jerry","9090902020",null);
+		List<Customer>cusList = new ArrayList<>();
+		for(Customer obj:cus) {
+			cusList.add(obj);
+		}
+		
+		System.out.println(cus[0]);
+		System.out.println(cus[1]);
+		Account []ac = new Account[2];
+		ac[0] = new Account(1,1000.0);
+		ac[1] = new Account(2,1500.0);
+		
+		List<Account> acList = new ArrayList<>();
+		
+		for(Account ob:ac) {
+			acList.add(ob);
+		}
+		System.out.println(ac[id]);
+	}
+
+	
+	public void payBill() {
+	Date date = new Date(2022,01,01);
+		Bill []bill = new Bill[2];
+		bill[0] = new Bill(1,1,date,date, 1000,false);
+		Date date2 = new Date(2022,01,01);
+		Date date3 = new Date(2022,01,01);
+//		bill[0] = new Bill(1,1,date,date, 1000,false);
+		bill[1] = new Bill(2,2,date2,date3,1500,true);
+		List<Bill> BillList = new ArrayList<>();
+		
+		for(Bill ob1:bill) {
+			BillList.add(ob1);
+		}
+		System.out.println(bill[0]);		
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+package arjunabill;                 //Main Class
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        
+		Transaction t1 = new Transaction();
+//		t1.getCustomer(0);
+//		t1.payBill();
+//		
+		Scanner sc = new Scanner(System.in);
+		
+		
+		do {
+		System.out.println("Enter choice \n1.Enter Customer Details\n2.PayBill\n3.Exit");
+		
+		int i = sc.nextInt();
+		
+		switch(i) {
+		case 1: t1.getCustomer(0);
+		break;
+		case 2: t1.payBill();
+		break;
+		case 3:
+			System.out.println("Bye");
+			System.exit(0);
+		break;
+		default:
+			System.out.println("Not a valid choice");
+		}
+		}while(true);
+		
+	}
+
+}
+
+
+
+
